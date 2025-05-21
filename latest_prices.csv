@@ -1,5 +1,9 @@
 import pandas as pd
 import random
+import os
+
+# Create folder 'data' if it doesn't exist
+os.makedirs("data", exist_ok=True)
 
 # Define neighborhoods and years
 neighborhoods = ["Downtown", "Suburb", "Riverside", "Midtown", "Uptown"]
@@ -29,7 +33,13 @@ for _ in range(200):
 # Create DataFrame
 df = pd.DataFrame(data, columns=["price", "bedrooms", "year", "neighborhood"])
 
-# Save as CSV
-df.to_csv("data/latest_prices.csv", index=False)
+# Save as CSV without index and with header
+csv_path = "data/latest_prices.csv"
+df.to_csv(csv_path, index=False, header=True)
 
-print("✅ latest_prices.csv file generated in data/ folder.")
+print(f"✅ '{csv_path}' file generated successfully.")
+
+# Example: Load CSV back to check it
+df_loaded = pd.read_csv(csv_path)
+print(df_loaded.head())
+
