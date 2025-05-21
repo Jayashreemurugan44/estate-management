@@ -33,3 +33,5 @@ st.write("### Price distribution")
 fig, ax = plt.subplots()
 sns.histplot(df['price'], bins=30, ax=ax)
 st.pyplot(fig)
+
+
