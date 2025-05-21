@@ -1,45 +1,201 @@
-import pandas as pd
-import random
-import os
-
-# Create folder 'data' if it doesn't exist
-os.makedirs("data", exist_ok=True)
-
-# Define neighborhoods and years
-neighborhoods = ["Downtown", "Suburb", "Riverside", "Midtown", "Uptown"]
-years = list(range(2018, 2025))
-data = []
-
-# Generate 200 rows of synthetic real estate data
-for _ in range(200):
-    year = random.choice(years)
-    neighborhood = random.choice(neighborhoods)
-    bedrooms = random.randint(1, 5)
-    
-    # Base price by neighborhood
-    base_price = {
-        "Downtown": 300000,
-        "Suburb": 200000,
-        "Riverside": 250000,
-        "Midtown": 280000,
-        "Uptown": 270000,
-    }[neighborhood]
-    
-    # Final price = base + bedroom effect + some noise
-    price = base_price + (bedrooms * 10000) + random.randint(-15000, 15000)
-    
-    data.append([price, bedrooms, year, neighborhood])
-
-# Create DataFrame
-df = pd.DataFrame(data, columns=["price", "bedrooms", "year", "neighborhood"])
-
-# Save as CSV without index and with header
-csv_path = "data/latest_prices.csv"
-df.to_csv(csv_path, index=False, header=True)
-
-print(f"✅ '{csv_path}' file generated successfully.")
-
-# Example: Load CSV back to check it
-df_loaded = pd.read_csv(csv_path)
-print(df_loaded.head())
-
+price,bedrooms,year,neighborhood
+269534,3,2023,Riverside
+283228,2,2022,Uptown
+295655,2,2020,Uptown
+323558,5,2024,Midtown
+338959,5,2021,Midtown
+252613,5,2019,Suburb
+251949,1,2019,Riverside
+264992,5,2024,Suburb
+205209,2,2021,Suburb
+280060,3,2024,Riverside
+352865,4,2023,Downtown
+219926,3,2018,Suburb
+303881,1,2024,Midtown
+256657,2,2019,Riverside
+282001,4,2021,Riverside
+318880,1,2021,Downtown
+275862,2,2022,Uptown
+217890,3,2022,Suburb
+297736,5,2024,Riverside
+300987,2,2018,Uptown
+301588,3,2023,Midtown
+210960,2,2023,Suburb
+323446,5,2022,Midtown
+341540,3,2022,Downtown
+298543,4,2021,Riverside
+229585,3,2023,Suburb
+280708,2,2018,Uptown
+265077,3,2021,Riverside
+321241,4,2023,Midtown
+307470,2,2023,Midtown
+283065,4,2021,Riverside
+264310,5,2018,Suburb
+216268,2,2024,Suburb
+284198,3,2021,Riverside
+208646,2,2021,Suburb
+236022,3,2023,Suburb
+350423,5,2024,Downtown
+350470,5,2020,Downtown
+316001,4,2021,Midtown
+317072,4,2021,Midtown
+270683,1,2022,Uptown
+297299,3,2020,Uptown
+248733,5,2021,Suburb
+321085,3,2020,Downtown
+296328,1,2022,Midtown
+273164,3,2022,Riverside
+240514,4,2023,Suburb
+323693,5,2020,Uptown
+285350,1,2020,Uptown
+363476,5,2023,Downtown
+320888,2,2018,Downtown
+219589,1,2018,Suburb
+289385,2,2018,Midtown
+314944,5,2023,Riverside
+252507,4,2024,Suburb
+331679,4,2022,Downtown
+269317,1,2023,Riverside
+293248,2,2023,Uptown
+219427,1,2019,Suburb
+319420,5,2022,Midtown
+336195,5,2022,Midtown
+256831,2,2021,Riverside
+238942,3,2021,Suburb
+323661,5,2019,Midtown
+297071,4,2024,Riverside
+277920,3,2018,Riverside
+331677,5,2021,Uptown
+277280,4,2019,Riverside
+320878,3,2021,Downtown
+268732,3,2024,Riverside
+329265,4,2020,Midtown
+287540,5,2024,Riverside
+291220,2,2023,Midtown
+308280,3,2020,Uptown
+204894,1,2019,Suburb
+298107,2,2020,Midtown
+329753,4,2019,Downtown
+300730,4,2019,Uptown
+231326,2,2021,Suburb
+208216,1,2018,Suburb
+228315,2,2021,Suburb
+264282,2,2019,Riverside
+292174,5,2020,Riverside
+301714,1,2019,Midtown
+299662,1,2021,Midtown
+330104,3,2019,Downtown
+296196,5,2020,Riverside
+224698,3,2022,Suburb
+299949,5,2023,Riverside
+344861,5,2021,Downtown
+207815,2,2022,Suburb
+238552,3,2022,Suburb
+262165,2,2023,Riverside
+259104,5,2018,Suburb
+237921,3,2024,Suburb
+304429,3,2019,Uptown
+309199,5,2018,Riverside
+339472,4,2018,Downtown
+229032,3,2019,Suburb
+312395,5,2022,Uptown
+334143,5,2023,Midtown
+345136,4,2024,Downtown
+309060,3,2022,Midtown
+304442,3,2019,Midtown
+260972,5,2018,Suburb
+260044,5,2021,Suburb
+304109,5,2019,Riverside
+302230,3,2019,Midtown
+345167,5,2018,Downtown
+294735,2,2019,Uptown
+312051,2,2021,Downtown
+228314,3,2023,Suburb
+326748,5,2023,Midtown
+306570,3,2018,Uptown
+234635,3,2020,Suburb
+316428,1,2019,Downtown
+290059,1,2023,Uptown
+341795,5,2021,Midtown
+234278,4,2019,Suburb
+255794,1,2019,Riverside
+248563,4,2019,Suburb
+291869,5,2022,Riverside
+294753,1,2021,Uptown
+233885,2,2018,Suburb
+219858,3,2021,Suburb
+222128,1,2018,Suburb
+341372,4,2024,Downtown
+260902,2,2021,Riverside
+286041,2,2020,Uptown
+297232,3,2021,Midtown
+295495,1,2018,Downtown
+296609,2,2024,Uptown
+267762,1,2020,Riverside
+341407,5,2024,Downtown
+258933,2,2019,Riverside
+334344,5,2021,Midtown
+299651,2,2021,Uptown
+214770,2,2022,Suburb
+331406,2,2019,Downtown
+292537,2,2024,Uptown
+321529,4,2020,Uptown
+209550,1,2019,Suburb
+308275,2,2019,Downtown
+289316,1,2022,Uptown
+297407,2,2020,Uptown
+290828,5,2022,Riverside
+314656,4,2021,Midtown
+294593,3,2018,Uptown
+251055,5,2022,Suburb
+280098,3,2023,Riverside
+275014,4,2020,Riverside
+323089,3,2021,Downtown
+312096,2,2022,Downtown
+232756,2,2019,Suburb
+287140,3,2024,Uptown
+306633,2,2023,Midtown
+310608,4,2019,Midtown
+337504,4,2024,Downtown
+297497,1,2020,Midtown
+293838,2,2024,Uptown
+295434,3,2023,Midtown
+311119,4,2020,Uptown
+324018,5,2021,Midtown
+312773,2,2019,Midtown
+342426,3,2018,Downtown
+256674,1,2022,Riverside
+236806,4,2018,Suburb
+322024,4,2019,Uptown
+285822,4,2024,Riverside
+289435,2,2022,Midtown
+336267,5,2019,Midtown
+326367,4,2018,Downtown
+267339,1,2018,Uptown
+306712,3,2019,Uptown
+300913,4,2019,Uptown
+324200,4,2024,Uptown
+227009,4,2024,Suburb
+260741,2,2023,Riverside
+323804,5,2020,Uptown
+338284,5,2023,Downtown
+323390,3,2018,Downtown
+360707,5,2023,Downtown
+312765,5,2021,Uptown
+219676,2,2024,Suburb
+246258,1,2021,Riverside
+307011,5,2019,Uptown
+277874,2,2024,Uptown
+315129,2,2022,Downtown
+284766,3,2022,Riverside
+350588,5,2022,Downtown
+332335,5,2024,Midtown
+299086,1,2019,Downtown
+352256,4,2018,Downtown
+337224,5,2021,Downtown
+213341,2,2021,Suburb
+246075,5,2019,Suburb
+291276,1,2020,Uptown
+308032,2,2023,Midtown
+260400,2,2023,Riverside
+328806,3,2018,Downtown
