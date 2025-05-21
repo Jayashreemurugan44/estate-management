@@ -8,7 +8,7 @@ st.set_page_config(page_title="Real Estate Dashboard", layout="wide")
 
 @st.cache_data
 def load_data():
-    file_path = "data/latest_prices.csv"
+    file_path = "latest_prices.csv"
     if not os.path.exists(file_path):
         st.error(f"❌ Data file not found: {file_path}")
         st.stop()
